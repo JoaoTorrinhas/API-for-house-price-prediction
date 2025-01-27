@@ -3,17 +3,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from training_model import *
 import psycopg2, logging
 import json
+import os
 
 app = FastAPI()
 
-DB_USER = "postgres"
-DB_PASSWORD = "1234"
-DB_HOST = "db"
-DB_PORT = "5432"
-DB_DATABASE = "houses"
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_HOST = os.getenv("DB_HOST")
+DB_PORT = os.getenv("DB_PORT")
+DB_DATABASE = os.getenv("DB_DATABASE")
 
-# TODO: Ver como criar um script para retirar info das casas em um site (scrapping) e adicionar a um json para importar.
-# TODO: Ver variaveis de ambiente.
  
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

@@ -4,9 +4,9 @@ services:
     image: postgres:13
     container_name: postgres_db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: houses
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
     ports:
       - "5432:5432"
     volumes:
@@ -20,11 +20,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DB_HOST: db 
-      DB_USER: postgres
-      DB_PASSWORD: 1234
-      DB_PORT: 5432
-      DB_DATABASE: houses
+      DB_HOST: ${DB_HOST} 
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
 
 volumes:
   postgres_data:
