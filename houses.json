@@ -1,7 +1,8 @@
 [
     {
         "city": "Porto",
-        "address": "Fluvial, Lordelo do Ouro e Massarelos",
+        "latitude": 41.152967,
+        "longitude": -8.633968,
         "age": 10,
         "num_bedrooms": 5,
         "num_bathrooms": 4,
@@ -13,7 +14,8 @@
     },
     {
         "city": "Porto",
-        "address": "Bessa Leite, Lordelo do Ouro e Massarelos",
+        "latitude": 41.157218,
+        "longitude": -8.645376,
         "age": 37,
         "num_bedrooms": 4,
         "num_bathrooms": 3,
@@ -25,7 +27,8 @@
     },
     {
         "city": "Porto",
-        "address": "Fernão Magalhães - Joaquim Urbano, Bonfim",
+        "latitude": 41.155760,
+        "longitude": -8.594967,
         "age": 0,
         "num_bedrooms": 0,
         "num_bathrooms": 1,
@@ -37,7 +40,8 @@
     },
     {
         "city": "Porto",
-        "address": "Fernão Magalhães - Joaquim Urbano, Bonfim",
+        "latitude": 41.155760,
+        "longitude": -8.594967,
         "age": 0,
         "num_bedrooms": 0,
         "num_bathrooms": 1,
@@ -49,7 +53,8 @@
     },
     {
         "city": "Porto",
-        "address": "Prelada - Monte dos Burgos, Ramalde",
+        "latitude": 41.174422,
+        "longitude": -8.627340,
         "age": 0,
         "num_bedrooms": 2,
         "num_bathrooms": 2,
@@ -61,7 +66,8 @@
     },
     {
         "city": "Porto",
-        "address": "Foz Velha, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.150846,
+        "longitude": -8.669108,
         "age": 0,
         "num_bedrooms": 4,
         "num_bathrooms": 4,
@@ -73,7 +79,8 @@
     },
     {
         "city": "Porto",
-        "address": "Fernão Magalhães - Joaquim Urbano, Bonfim",
+        "latitude": 41.155760,
+        "longitude": -8.594967,
         "age": 0,
         "num_bedrooms": 1,
         "num_bathrooms": 2,
@@ -85,7 +92,8 @@
     },
     {
         "city": "Porto",
-        "address": "Centro Histórico, Cedofeita, Ildefonso, Sé, Miragaia, Nicolau, Vitória",
+        "latitude": 41.1436793,
+        "longitude": -8.6129957,
         "age": 0,
         "num_bedrooms": 2,
         "num_bathrooms": 2,
@@ -97,7 +105,8 @@
     },
     {
         "city": "Porto",
-        "address": "Contumil - Nicolau Nasoni, Campanhã",
+        "latitude": 41.1686,
+        "longitude": -8.58545,
         "age": 0,
         "num_bedrooms": 2,
         "num_bathrooms": 2,
@@ -109,7 +118,8 @@
     },
     {
         "city": "Porto",
-        "address": "Contumil - Nicolau Nasoni, Campanhã",
+        "latitude": 41.1686,
+        "longitude": -8.58545,
         "age": 0,
         "num_bedrooms": 2,
         "num_bathrooms": 3,
@@ -121,7 +131,8 @@
     },
     {
         "city": "Porto",
-        "address": "Contumil - Nicolau Nasoni, Campanhã",
+        "latitude": 41.1686,
+        "longitude": -8.58545,
         "age": 0,
         "num_bedrooms": 2,
         "num_bathrooms": 2,
@@ -133,7 +144,8 @@
     },
     {
         "city": "Porto",
-        "address": "Bessa Leite, Lordelo do Ouro e Massarelos",
+        "latitude": 41.157218,
+        "longitude": -8.645376,
         "age": 0,
         "num_bedrooms": 2,
         "num_bathrooms": 3,
@@ -145,7 +157,8 @@
     },
     {
         "city": "Porto",
-        "address": "Centro de Ramalde - Pereiró, Ramalde",
+        "latitude": 41.17544,
+        "longitude": -8.64098,
         "age": 0,
         "num_bedrooms": 3,
         "num_bathrooms": 3,
@@ -157,7 +170,8 @@
     },
     {
         "city": "Porto",
-        "address": "Contumil - Nicolau Nasoni, Campanhã",
+        "latitude": 41.1686,
+        "longitude": -8.58545,
         "age": 0,
         "num_bedrooms": 2,
         "num_bathrooms": 3,
@@ -169,7 +183,8 @@
     },
     {
         "city": "Porto",
-        "address": "Centro Histórico, Cedofeita, Ildefonso, Sé, Miragaia, Nicolau, Vitória",
+        "latitude": 41.1436793,
+        "longitude": -8.6129957,
         "age": 35,
         "num_bedrooms": 2,
         "num_bathrooms": 1,
@@ -181,7 +196,8 @@
     },
     {
         "city": "Porto",
-        "address": "Bessa Leite, Lordelo do Ouro e Massarelos",
+        "latitude": 41.157218,
+        "longitude": -8.645376,
         "age": 0,
         "num_bedrooms": 4,
         "num_bathrooms": 4,
@@ -193,7 +209,8 @@
     },
     {
         "city": "Porto",
-        "address": "Serralves, Lordelo do Ouro e Massarelos",
+        "latitude": 41.15783,
+        "longitude": -8.65279,
         "age": 6,
         "num_bedrooms": 3,
         "num_bathrooms": 2,
@@ -205,7 +222,8 @@
     },
     {
         "city": "Porto",
-        "address": "Centro de Ramalde - Pereiró, Ramalde",
+        "latitude": 41.17544,
+        "longitude": -8.64098,
         "age": 0,
         "num_bedrooms": 3,
         "num_bathrooms": 3,
@@ -217,7 +235,8 @@
     },
     {
         "city": "Porto",
-        "address": "Palácio de Cristal - Galiza - Vilar, Lordelo do Ouro e Massarelos",
+        "latitude": 41.14832,
+        "longitude": -8.64526,
         "age": 8,
         "num_bedrooms": 3,
         "num_bathrooms": 3,
@@ -229,7 +248,8 @@
     },
     {
         "city": "Porto",
-        "address": "Rua Fonte de Massarelos, Foz Velha, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.150846,
+        "longitude": -8.669108,
         "age": 2,
         "num_bedrooms": 3,
         "num_bathrooms": 3,
@@ -241,7 +261,8 @@
     },
     {
         "city": "Porto",
-        "address": "Palácio de Cristal - Galiza - Vilar, Lordelo do Ouro e Massarelos",
+        "latitude": 41.14832,
+        "longitude": -8.64526,
         "age": 1,
         "num_bedrooms": 4,
         "num_bathrooms": 3,
@@ -253,7 +274,8 @@
     },
     {
         "city": "Porto",
-        "address": "Cooperativa dos Arquitectos - Fonte da Moura - Pedra Verde, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.16571,
+        "longitude": -8.66244,
         "age": 7,
         "num_bedrooms": 5,
         "num_bathrooms": 4,
@@ -265,7 +287,8 @@
     },
     {
         "city": "Porto",
-        "address": "Pinheiro Manso, Ramalde, Porto, Porto",
+        "latitude": 41.16614,
+        "longitude":  -8.6515,
         "age": 20,
         "num_bedrooms": 5,
         "num_bathrooms": 4,
@@ -277,7 +300,8 @@
     },
     {
         "city": "Porto",
-        "address": "Parque da Cidade - Vilarinha - António Aroso, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.16998,
+        "longitude": -8.67033,
         "age": 2,
         "num_bedrooms": 4,
         "num_bathrooms": 3,
@@ -289,7 +313,8 @@
     },
     {
         "city": "Porto",
-        "address": "Foz, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.16539,
+        "longitude": -8.67806,
         "age": 2,
         "num_bedrooms": 5,
         "num_bathrooms": 4,
@@ -301,7 +326,8 @@
     },
     {
         "city": "Porto",
-        "address": "Serralves, Lordelo do Ouro e Massarelos",
+        "latitude": 41.15783,
+        "longitude": -8.65279,
         "age": 7,
         "num_bedrooms": 4,
         "num_bathrooms": 4,
@@ -313,7 +339,8 @@
     },
     {
         "city": "Porto",
-        "address": "Foz, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.16539,
+        "longitude": -8.67806,
         "age": 1,
         "num_bedrooms": 3,
         "num_bathrooms": 3,
@@ -325,7 +352,8 @@
     },
     {
         "city": "Porto",
-        "address": "Centro de Ramalde - Pereiró, Ramalde",
+        "latitude": 41.17544,
+        "longitude": -8.64098,
         "age": 47,
         "num_bedrooms": 4,
         "num_bathrooms": 4,
@@ -337,7 +365,8 @@
     },
     {
         "city": "Porto",
-        "address": "Aviz - Cristo Rei, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.1639,
+        "longitude": -8.67663,
         "age": 1,
         "num_bedrooms": 4,
         "num_bathrooms": 4,
@@ -349,7 +378,8 @@
     },
     {
         "city": "Porto",
-        "address": "Rua da Vilarinha, Parque da Cidade - Vilarinha - António Aroso, Aldoar, Foz do Douro e Nevogilde",
+        "latitude": 41.17167,
+        "longitude": -8.67259,
         "age": 38,
         "num_bedrooms": 5,
         "num_bathrooms": 4,

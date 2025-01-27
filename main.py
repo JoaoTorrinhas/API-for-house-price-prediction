@@ -50,8 +50,9 @@ def create_tables():
                 CREATE TABLE IF NOT EXISTS houses (
                     house_id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
                     city VARCHAR NOT NULL,
-                    address VARCHAR NOT NULL,
-                    age INT,
+                    latitude FLOAT,
+                    longitude FLOAT,
+                    age FLOAT,
                     num_bedrooms INT,
                     num_bathrooms INT,
                     area INT,
@@ -72,22 +73,23 @@ def create_tables():
 @app.get("/house/predict/")
 async def predict_house_price(
     city: str = Form(None),
-    address: str = Form(None),
+    latitude: float = Form(None),
+    longitude: float = Form(None),
     age: int = Form(None),
     num_bedrooms: int = Form(None),
     num_bathrooms: int = Form(None),
-    area: int = Form(None),
+    area: float = Form(None),
     is_apartment: bool = Form(None),
     has_pool: bool = Form(None),
     garage: bool = Form(None)
 ):
     global connection 
     
-    if city is None or address is None or age is None or num_bedrooms is None or num_bathrooms is None or area is None or is_apartment is None or has_pool is None or garage is None:
+    if city is None or latitude is None or longitude is None or age is None or num_bedrooms is None or num_bathrooms is None or area is None or is_apartment is None or has_pool is None or garage is None:
         raise HTTPException(status_code=400, detail="All fields must be filled")
     
     # Train the model to get the price
-    house_price = price_predict(city, address, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, connection)
+    house_price = price_predict(city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, connection)
     if house_price:
         return {'price': house_price}
     
@@ -98,17 +100,18 @@ async def predict_house_price(
 @app.post("/house/")
 async def add_house(
     city: str = Form(None),
-    address: str = Form(None),
+    latitude: float = Form(None),
+    longitude: float = Form(None),
     age: int = Form(None),
     num_bedrooms: int = Form(None),
     num_bathrooms: int = Form(None),
-    area: int = Form(None),
+    area: float = Form(None),
     is_apartment: bool = Form(None),
     has_pool: bool = Form(None),
     garage: bool = Form(None),
     price: int = Form(None)
 ):
-    if city is None or address is None or age is None or num_bedrooms is None or num_bathrooms is None or area is None or is_apartment is None or has_pool is None or garage is None or price is None:
+    if city is None or latitude is None or longitude is None or age is None or num_bedrooms is None or num_bathrooms is None or area is None or is_apartment is None or has_pool is None or garage is None or price is None:
         raise HTTPException(status_code=400, detail="All fields must be filled")
     
     # Add the house to the database
@@ -116,8 +119,8 @@ async def add_house(
     try:
         with connection.cursor() as cursor:
             cursor.execute(
-                "INSERT INTO houses (city, address, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
-                (city, address, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price)
+                "INSERT INTO houses (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price)
             )
             connection.commit()
     except (Exception, psycopg2.Error) as error:
@@ -143,18 +146,18 @@ async def import_houses(file_import: UploadFile = File(...)):
         with connection.cursor() as cursor:
             for house in list_houses_import:
                 # Validar os campos necessários
-                required_fields = ["city", "address", "age", "num_bedrooms", "num_bathrooms", "area", "is_apartment", "has_pool", "garage", "price"]
+                required_fields = ["city", "latitude", "longitude", "age", "num_bedrooms", "num_bathrooms", "area", "is_apartment", "has_pool", "garage", "price"]
                 if not all(field in house for field in required_fields):
                     raise HTTPException(status_code=400, detail=f"Missing fields in house data: {house}")
                 
                 # Adicionar casa ao banco de dados
                 cursor.execute(
                     """
-                    INSERT INTO houses (city, address, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    INSERT INTO houses (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                     """,
                     (
-                        house["city"], house["address"], house["age"], house["num_bedrooms"],
+                        house["city"], house["latitude"], house["longitude"], house["age"], house["num_bedrooms"],
                         house["num_bathrooms"], house["area"], house["is_apartment"],
                         house["has_pool"], house["garage"], house["price"]
                     )
@@ -182,22 +185,6 @@ async def remove_houses():
     except (Exception, psycopg2.Error) as error:
         logger.error(f"Error removing houses: {error}")
         raise HTTPException(status_code=500, detail="Could not remove the houses from the database")
-
-# Delete a House
-# @app.delete("/house/{email}")
-# def delete_house(
-#     email: str = Form(None),
-#     city: str = Form(None),
-#     age: int = Form(None),
-#     num_bedrooms: int = Form(None),
-#     num_bathrooms: int = Form(None),
-#     area: int = Form(None),
-#     is_apartment: bool = Form(None),
-#     has_pool: bool = Form(None),
-#     price: int = Form(None)
-# ):
-    
-#     return {"message": "House deleted successfully."}
 
 # Get all Houses (Auxiliary function)
 @app.get("/houses/")

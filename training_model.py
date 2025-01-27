@@ -4,12 +4,12 @@ import psycopg2
 import numpy as np
 from fastapi import HTTPException
 
-def price_predict(city, address, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, connection):
+def price_predict(city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, connection):
     try:
-        query = "SELECT city, address, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price FROM houses"
+        query = "SELECT city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price FROM houses"
         df = pd.read_sql(query, connection)
 
-        df = pd.get_dummies(df, columns=['city', 'address'], drop_first=True)
+        df = pd.get_dummies(df, columns=['city'], drop_first=True)
         
         X = df.drop('price', axis=1)
         y = df['price']
@@ -21,7 +21,8 @@ def price_predict(city, address, age, num_bedrooms, num_bathrooms, area, is_apar
         # Create input data frame
         house_data = {
             'city': city,
-            'address': address,
+            'latitude': latitude,
+            'longitude': longitude,
             'age': age,
             'num_bedrooms': num_bedrooms,
             'num_bathrooms': num_bathrooms,
@@ -32,10 +33,8 @@ def price_predict(city, address, age, num_bedrooms, num_bathrooms, area, is_apar
         }
 
         city_dummies = pd.get_dummies(pd.Series([city]), prefix='city')
-        address_dummies = pd.get_dummies(pd.Series([address]), prefix='address')
 
         house_data.update(city_dummies.to_dict(orient='list'))
-        house_data.update(address_dummies.to_dict(orient='list'))
 
         house_df = pd.DataFrame(house_data)
 
