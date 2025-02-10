@@ -12,7 +12,6 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_HOST = os.getenv("DB_HOST")
 DB_PORT = os.getenv("DB_PORT")
 DB_DATABASE = os.getenv("DB_DATABASE")
-
  
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -96,7 +95,7 @@ async def predict_house_price(
     raise HTTPException(status_code=500, detail="Could not estimate the house price")
 
 
-# Add a House (Adicionar informações de casas reais a uma base de dados para treinar o modelo)
+# Add a House
 @app.post("/house/")
 async def add_house(
     city: str = Form(None),
@@ -115,19 +114,43 @@ async def add_house(
         raise HTTPException(status_code=400, detail="All fields must be filled")
     
     # Add the house to the database
-    global connection
+    global connection 
     try:
         with connection.cursor() as cursor:
             cursor.execute(
-                "INSERT INTO houses (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                """
+                SELECT house_id FROM houses 
+                WHERE city = %s 
+                AND latitude = %s 
+                AND longitude = %s 
+                AND age = %s 
+                AND num_bedrooms = %s 
+                AND num_bathrooms = %s 
+                AND area = %s 
+                AND is_apartment = %s 
+                AND has_pool = %s 
+                AND garage = %s 
+                AND price = %s
+                """,
                 (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price)
             )
-            connection.commit()
+            existing_house = cursor.fetchone()
+            
+            #Check if the house already exists in the database
+            if existing_house:
+                raise HTTPException(status_code=409, detail="House already exists in the database.")
+            else:
+                cursor.execute(
+                    "INSERT INTO houses (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)",
+                    (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price)
+                )
+                connection.commit()
+                return {"message": "House added successfully."}
+            
     except (Exception, psycopg2.Error) as error:
         logger.error(f"Error adding house to the database: {error}")
         raise HTTPException(status_code=500, detail="Could not add the house to the database")
-    
-    return {"message": "House added successfully."}
+
 
 # Add houses inside of a json file to the database
 @app.post("/houses/import/")
@@ -138,19 +161,15 @@ async def import_houses(file_import: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail="Only JSON files are allowed")
     
     try:
-        # Carregar e processar o arquivo JSON
         content = await file_import.read()
-        list_houses_import = json.loads(content)  # Parse do JSON para um dicionário/lista
+        list_houses_import = json.loads(content) 
         
-        # Validar e adicionar casas à base de dados
         with connection.cursor() as cursor:
             for house in list_houses_import:
-                # Validar os campos necessários
                 required_fields = ["city", "latitude", "longitude", "age", "num_bedrooms", "num_bathrooms", "area", "is_apartment", "has_pool", "garage", "price"]
                 if not all(field in house for field in required_fields):
                     raise HTTPException(status_code=400, detail=f"Missing fields in house data: {house}")
                 
-                # Adicionar casa ao banco de dados
                 cursor.execute(
                     """
                     INSERT INTO houses (city, latitude, longitude, age, num_bedrooms, num_bathrooms, area, is_apartment, has_pool, garage, price)
@@ -172,7 +191,8 @@ async def import_houses(file_import: UploadFile = File(...)):
         logger.error(f"Error importing houses: {error}")
         raise HTTPException(status_code=500, detail="Could not import houses into the database")
     
-@app.delete("/houses/remove/")
+    
+@app.delete("/houses/")
 async def remove_houses():
     global connection
     
