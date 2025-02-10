@@ -157,6 +157,7 @@ async def add_house(
 async def import_houses(file_import: UploadFile = File(...)):
     global connection
     
+    #Check if its a JSON file
     if file_import.content_type != "application/json":
         raise HTTPException(status_code=400, detail="Only JSON files are allowed")
     
