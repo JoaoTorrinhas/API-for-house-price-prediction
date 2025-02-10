@@ -3,7 +3,7 @@ name: Run tests on the API
 on:
   push:
     branches:
-      - master
+      - main
     path:
       - 'main.py'
       - 'test_main.py'
