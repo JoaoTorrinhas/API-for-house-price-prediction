@@ -147,7 +147,7 @@ async def add_house(
                 connection.commit()
                 return {"message": "House added successfully."}
             
-    except (Exception, psycopg2.Error) as error:
+    except psycopg2.Error as error:
         logger.error(f"Error adding house to the database: {error}")
         raise HTTPException(status_code=500, detail="Could not add the house to the database")
 
