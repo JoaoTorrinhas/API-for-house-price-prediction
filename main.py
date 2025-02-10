@@ -70,7 +70,7 @@ def create_tables():
         logger.error(f"Error creating table: {error}")
 
 
-@app.get("/house/predict/")
+@app.post("/house/predict/")
 async def predict_house_price(
     city: str = Form(None),
     latitude: float = Form(None),
